@@ -1,0 +1,6 @@
+- name: Configure frontend server 
+  hosts: frontend 
+  become: yes 
+  tasks: 
+  - name: install niginx 
+    
