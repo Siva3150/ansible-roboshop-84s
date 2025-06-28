@@ -1,0 +1,8 @@
+- name: To configure shipping server 
+  hosts: shipping 
+  become: yes 
+  tasks: 
+  - name: Install maven 
+    ansible.builtin.dnf:
+     name: maven 
+     state: installed 
