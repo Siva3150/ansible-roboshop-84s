@@ -56,7 +56,22 @@
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
 
+  - name: restart shipping
+    tags:
+    - import
+    ansible.builtin.service:
+      state: restarted
+      name: shipping
   
+  - name: daemon reload
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: enable and start shipping
+    ansible.builtin.service:
+      name: shipping
+      state: started
+      enabled: yes
 
   # - name: connect to mysql using app user
   #   community.mysql.mysql_info:
@@ -80,19 +95,7 @@
     - /app/db/app-user.sql
     - /app/db/master-data.sql
 
-  - name: restart shipping
-    tags:
-    - import
+  - name: Restart shipping 
     ansible.builtin.service:
-      state: restarted
-      name: shipping
-  
-  - name: daemon reload
-    ansible.builtin.systemd_service:
-      daemon_reload: true
-
-  - name: enable and start shipping
-    ansible.builtin.service:
-      name: shipping
-      state: started
-      enabled: yes
+     name: shipping 
+     state: restarted 
