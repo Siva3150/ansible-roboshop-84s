@@ -4,8 +4,11 @@
   tasks: 
   - name: Install maven 
     ansible.builtin.dnf:
-     name: maven 
+     name: "{{ item }}"
      state: installed 
+    loop:
+    - maven 
+    - mysql 
 
   - name: craete app directory 
     ansible.builtin.file: 
